@@ -37,7 +37,7 @@
 >     parseToTarget,
 >     translateTree) where
 
-> import Language.Haskell.SyntaxTrees.Main
+> import Fork.Bairyn.Language.Haskell.SyntaxTrees.Main
 
 > import Language.Haskell.Interpreter
 > import Language.Haskell.Exts.Parser
