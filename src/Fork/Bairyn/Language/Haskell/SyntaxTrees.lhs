@@ -7,7 +7,6 @@
 >    Portability : portable (template-haskell)
 > -}
 
-
 > module Fork.Bairyn.Language.Haskell.SyntaxTrees
 >   ( module Fork.Bairyn.Language.Haskell.SyntaxTrees.ExtsToTH
 >   , module Fork.Bairyn.Language.Haskell.SyntaxTrees.Main
