@@ -4,7 +4,7 @@
 >    License     : BSD3
 >    Maintainer  : Dominic Orchard <dom.orchard@gmail.com>
 >    Stability   : experimental
->    Portability : portable (tempalte-haskell)
+>    Portability : portable (template-haskell)
 > -}
 
 
