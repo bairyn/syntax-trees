@@ -1,4 +1,4 @@
-name:                syntax-trees-fork-bairyn
+name:                syntax-trees
 -- Don't forget to bump the tag too.
 version:             0.1.2.3
 cabal-version:       >= 1.10
@@ -52,9 +52,9 @@ library
    ,uniplate
    ,hint
   exposed-modules:
-    Fork.Bairyn.Language.Haskell.SyntaxTrees
-   ,Fork.Bairyn.Language.Haskell.SyntaxTrees.Main
-   ,Fork.Bairyn.Language.Haskell.SyntaxTrees.ExtsToTH
+    Language.Haskell.SyntaxTrees
+   ,Language.Haskell.SyntaxTrees.Main
+   ,Language.Haskell.SyntaxTrees.ExtsToTH
 
 source-repository head
   type:     git

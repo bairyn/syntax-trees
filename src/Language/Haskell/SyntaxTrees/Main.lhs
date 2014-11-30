@@ -1,5 +1,5 @@
 > {-
->    Module      : Fork.Bairyn.Language.Haskell.SyntaxTrees
+>    Module      : Language.Haskell.SyntaxTrees
 >    Copyright   : (c) Dominic Orchard 2010
 >    License     : BSD3
 >    Maintainer  : Dominic Orchard <dom.orchard@gmail.com>
@@ -9,7 +9,7 @@
 
 > {-# LANGUAGE MultiParamTypeClasses #-}
 
-> module Fork.Bairyn.Language.Haskell.SyntaxTrees.Main where
+> module Language.Haskell.SyntaxTrees.Main where
 
 > type Witness a = a
 
