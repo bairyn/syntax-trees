@@ -7,7 +7,6 @@
 >    Portability : portable (template-haskell)
 > -}
 
-
 > module Language.Haskell.SyntaxTrees
 >   ( module Language.Haskell.SyntaxTrees.ExtsToTH
 >   , module Language.Haskell.SyntaxTrees.Main
