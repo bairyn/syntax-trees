@@ -1,6 +1,6 @@
 name:                syntax-trees-fork-bairyn
 -- Don't forget to bump the tag too.
-version:             0.1.2.1
+version:             0.1.2.2
 cabal-version:       >= 1.10
 build-type:          Simple
 license:             BSD3
@@ -63,4 +63,4 @@ source-repository head
 source-repository this
   type:     git
   location: git@github.com:bairyn/syntax-trees-fork-bairyn.git
-  tag:      v0.1.2.1
+  tag:      v0.1.2.2
