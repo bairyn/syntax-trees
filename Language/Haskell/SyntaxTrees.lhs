@@ -8,7 +8,10 @@
 > -}
 
 
-> module Language.Haskell.SyntaxTrees () where
+> module Language.Haskell.SyntaxTrees
+>   ( module Language.Haskell.SyntaxTrees.ExtsToTH
+>   , module Language.Haskell.SyntaxTrees.Main
+>   ) where
 
 > import Language.Haskell.SyntaxTrees.ExtsToTH
 > import Language.Haskell.SyntaxTrees.Main
