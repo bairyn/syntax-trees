@@ -8,7 +8,6 @@
 > -}
 
 > {-# LANGUAGE MultiParamTypeClasses #-}
-> {-# OPTIONS_GHC -fno-warn-orphans #-}
 
 > {-| Provides an instance that translates
 >   haskell-src-exts expression trees into Template Haskell expression
