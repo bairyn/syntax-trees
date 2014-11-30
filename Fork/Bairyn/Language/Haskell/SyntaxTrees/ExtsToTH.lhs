@@ -44,6 +44,7 @@
 > import Language.Haskell.Exts.Pretty
 > import qualified Language.Haskell.Exts.Syntax as Exts
 > import qualified Language.Haskell.TH as TH
+> import Data.Data
 > import Data.Generics.Uniplate.Data
 > import Foreign
 > import Control.Monad.State.Lazy
@@ -223,7 +224,7 @@ but take a function with return type: m (Either on on), with behaviour:
        shouldn't be parsed over.
 
 
-> transformTopDownM :: (Monad m, Uniplate on) => (on -> m (Either on on)) -> on -> m on
+> transformTopDownM :: (Monad m, Uniplate on, Data on) => (on -> m (Either on on)) -> on -> m on
 > transformTopDownM f = g
 >    where g x = do x' <- (f x)
 >                   case x' of
