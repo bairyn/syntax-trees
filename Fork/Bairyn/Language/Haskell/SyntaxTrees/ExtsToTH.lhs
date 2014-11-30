@@ -1,5 +1,5 @@
 > {-
->    Module      : Language.Haskell.SyntaxTrees
+>    Module      : Fork.Bairyn.Language.Haskell.SyntaxTrees
 >    Copyright   : (c) Dominic Orchard 2010
 >    License     : BSD3
 >    Maintainer  : Dominic Orchard <dom.orchard@gmail.com>
@@ -31,7 +31,7 @@
 >   @
 > -}
 
-> module Language.Haskell.SyntaxTrees.ExtsToTH (
+> module Fork.Bairyn.Language.Haskell.SyntaxTrees.ExtsToTH (
 >     translateExtsToTH,
 >     parseToTH,
 >     parseToTarget,

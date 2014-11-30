@@ -1,4 +1,4 @@
-> import Language.Haskell.SyntaxTrees.ExtsToTH
+> import Fork.Bairyn.Language.Haskell.SyntaxTrees.ExtsToTH
 > import qualified Language.Haskell.TH as TH
 > import qualified Language.Haskell.Exts.Syntax as Exts
 
