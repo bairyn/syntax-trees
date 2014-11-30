@@ -45,9 +45,9 @@
 > import qualified Language.Haskell.Exts.Syntax as Exts
 > import qualified Language.Haskell.TH as TH
 > import Data.Generics.Uniplate.Data
-> import Foreign
 > import Control.Monad.State.Lazy
 > import qualified Control.Monad.State.Class as State
+> import System.IO.Unsafe (unsafePerformIO)
 
 ================================================================================
 
