@@ -1,11 +1,11 @@
 name:             syntax-trees-fork-bairyn
+-- Don't forget to bump the tag too.
 version:          0.1.2
 synopsis:         Convert between different Haskell syntax trees.  Bairyn's fork.
 description:      Provides an instance that translates
       This is a fork of Dominic Orchard's syntax-trees package that is patched
       to build on Haskell's more modern ecosystem.  My only contributions as of
-      this version are adding an import of "System.IO.Unsafe" and the effort of
-      creating this fork.
+      this version are the addition of an import of "System.IO.Unsafe".
       .
 		  haskell-src-exts expression trees into Template Haskell expression
 		  trees in a way that depends only on the haskell-src-exts syntax tree
@@ -42,3 +42,12 @@ library
   exposed-modules:  Fork.Bairyn.Language.Haskell.SyntaxTrees
                     Fork.Bairyn.Language.Haskell.SyntaxTrees.Main
                     Fork.Bairyn.Language.Haskell.SyntaxTrees.ExtsToTH
+
+source-repository head
+  type:     git
+  location: git@github.com:bairyn/syntax-trees-fork-bairyn.git
+
+source-repository this
+  type:     git
+  location: git@github.com:bairyn/syntax-trees-fork-bairyn.git
+  tag:      v0.1.2
