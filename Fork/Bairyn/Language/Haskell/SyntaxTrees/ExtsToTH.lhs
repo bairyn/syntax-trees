@@ -39,7 +39,7 @@
 
 > import Fork.Bairyn.Language.Haskell.SyntaxTrees.Main
 
-> import Language.Haskell.Interpreter
+> import Language.Haskell.Interpreter hiding (name)
 > import Language.Haskell.Exts.Parser
 > import Language.Haskell.Exts.Pretty
 > import qualified Language.Haskell.Exts.Syntax as Exts
@@ -56,12 +56,12 @@
 >   translateTree t = unsafePerformIO $ 
 >              do mx <- runInterpreter (interpretTH (buildTHString t))
 >                 case mx of 
->                   Left x -> (return . Left) t
+>                   Left _ -> (return . Left) t
 >                   Right x -> x >>= (return . Right)
 >
->   parseToTarget witness s = case (parseExp s) of
->                 ParseOk x -> case (translateTree x) of
->                                Left x -> Left s
+>   parseToTarget _witness s = case (parseExp s) of
+>                 ParseOk ex -> case (translateTree ex) of
+>                                Left _ -> Left s
 >                                Right x -> Right x
 >                 ParseFailed _ string -> Left $ s++string
 
@@ -104,11 +104,12 @@ scoped variables in the following nested scope structure:
 isFree is used to ask if an encountered variable name is currently free
 
 > isFree :: String -> NestedScopes -> Bool
-> isFree var Empty = True
+> isFree _    Empty = True
 > isFree var (Next vars n) = (not $ elem var vars) && isFree var n
 
 Any free variables are converted into an Exts.Exp of a TH splice by mkFreeVar:
 
+> mkFreeVar :: Exts.Name -> Exts.Exp
 > mkFreeVar n = Exts.SpliceExp $ Exts.ParenSplice $ 
 >             (Exts.App (Exts.Var (Exts.UnQual $ Exts.Ident "varE"))
 >                       (Exts.App (Exts.Var $ Exts.UnQual $ Exts.Ident "mkName")
@@ -137,6 +138,7 @@ binding forms:
 >                               (Exts.FunBind matches) <- universe p]
 > getBinders (Exts.IPBinds ipbinds) = map getIPBinders ipbinds
 
+> getMatchBinders :: Exts.Match -> [String]
 > getMatchBinders (Exts.Match _ _ pats _ _ binds) = getPatBinders pats ++ getBinders binds
 
 > getAltBinders :: [Exts.Alt] -> [String]
@@ -147,19 +149,19 @@ binding forms:
 
 
 > getIPBinders :: Exts.IPBind -> String
-> getIPBinders (Exts.IPBind srcLine (Exts.IPDup n) exp) = n
-> getIPBinders (Exts.IPBind srcLine (Exts.IPLin n) exp) = n
+> getIPBinders (Exts.IPBind _srcLine (Exts.IPDup n) _expr) = n
+> getIPBinders (Exts.IPBind _srcLine (Exts.IPLin n) _expr) = n
 
 liftFreeVars processes the tree town down using the uniplate extension:
 transformTopDownM (see below) to process the tree top down and to not process newly
 generated subtrees.
 
 > liftFreeVars :: Exts.Exp -> Exts.Exp
-> liftFreeVars x = evalState (transformTopDownM f x) Empty
+> liftFreeVars exprTree = evalState (transformTopDownM f exprTree) Empty
 >   where
 >     -- Qualified variable encountered, transformation occurs here**
 >     -- Qualified variables are always 'free'
->     f e@(Exts.Var (Exts.Qual (Exts.ModuleName m) name)) = do
+>     f (Exts.Var (Exts.Qual (Exts.ModuleName m) name)) = do
 >           return $ Right $ mkFreeVar $ Exts.Ident $ m ++ "." ++ nameToString name
 >     -- Variable encountered: *** transformation occurs here**
 >     f e@(Exts.Var (Exts.UnQual name)) = do
@@ -169,25 +171,25 @@ generated subtrees.
 >          else
 >             return $ Left e
 >     -- Let binder
->     f e@(Exts.Let binds exp) = do
+>     f e@(Exts.Let binds _expr) = do
 >         scopedVars <- State.get
 >         State.put $ Next (getBinders binds) scopedVars
 >         return $ Left e
 
 >     -- Lambda binder
->     f e@(Exts.Lambda srcLine pats exp) = do
+>     f e@(Exts.Lambda _srcLine pats _expr) = do
 >         scopedVars <- State.get
 >         State.put $ Next (getPatBinders pats) scopedVars
 >         return $ Left e
 
 >     -- Case binder
->     f e@(Exts.Case exp alts) = do
+>     f e@(Exts.Case _expr alts) = do
 >         scopedVars <- State.get
 >         State.put $ Next (getAltBinders alts) scopedVars
 >         return $ Left e
 
 >     -- Arrow Proc binder
->     f e@(Exts.Proc srcLine pat exp) = do
+>     f e@(Exts.Proc _srcLine pat _expr) = do
 >         scopedVars <- State.get
 >         State.put $ Next (getPatBinders [pat]) scopedVars
 >         return $ Left e
