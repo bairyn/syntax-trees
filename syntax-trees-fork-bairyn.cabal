@@ -61,9 +61,9 @@ library
 
 source-repository head
   type:     git
-  location: git@github.com:bairyn/syntax-trees-fork-bairyn.git
+  location: git@github.com:bairyn/syntax-trees.git
 
 source-repository this
   type:     git
-  location: git@github.com:bairyn/syntax-trees-fork-bairyn.git
+  location: git@github.com:bairyn/syntax-trees.git
   tag:      v0.1.2.3
