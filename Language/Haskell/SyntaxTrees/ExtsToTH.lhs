@@ -131,7 +131,7 @@ binding forms:
 >   where getBinders' p = concat ((patBinders p) ++ (matchBinders p))
 
 >         patBinders p = [(getPatBinders [pat])++(getBinders binds) |
->                               (Exts.PatBind _ pat _ _ binds) <- universe p]
+>                               (Exts.PatBind _ pat _ binds) <- universe p]
 
 >         matchBinders p = [concatMap getMatchBinders matches |
 >                               (Exts.FunBind matches) <- universe p]

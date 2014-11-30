@@ -27,7 +27,7 @@ extra-source-files:  examples/Foo.lhs
 library
   build-depends:    base >= 3 && <5,
                     mtl,
-                    haskell-src-exts >=1.2,
+                    haskell-src-exts >=1.16.0,
                     template-haskell,
                     uniplate,
                     hint
