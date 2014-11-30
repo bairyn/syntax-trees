@@ -43,11 +43,11 @@ library
   other-extensions:
     MultiParamTypeClasses
   build-depends:
-    base             >= 4      && < 5
+    base             >= 4    && < 5
    ,mtl
    -- haskell-src-exts introduces a change in the PatBind constructor of
    -- 'Language.Haskell.Syntax.Exts.Syntax.Decl' in version 1.16.0.
-   ,haskell-src-exts >= 1.16
+   ,haskell-src-exts >= 1.16 && < 2
    ,template-haskell
    ,uniplate
    ,hint
