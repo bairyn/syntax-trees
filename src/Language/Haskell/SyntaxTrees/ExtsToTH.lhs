@@ -16,15 +16,15 @@
 >   Haskell between haskell-src-exts pretty-printer and
 >   Template Haskell quotations (as opposed to depending on
 >   both TH and haskell-src-exts syntax tree representations).
->   
 >
->   Instead of converting between data types, 
+>
+>   Instead of converting between data types,
 >   haskell-src-exts syntax trees are pretty-printed and wrapped in
 >   a TH quotation which is then interpreted as a Haskell program,
 >   yielding a TH Exp tree. Free variables in the haskell-src-exts tree are
 >   preserved by lifting them to TH splices prior to pretty-printing.
 >
->   e.g. @parseToTH \"let x = 1 in x + y\"@ = 
+>   e.g. @parseToTH \"let x = 1 in x + y\"@ =
 >   @
 >       Right (LetE [ValD (VarP x_1) (NormalB (LitE (IntegerL 1))) []]
 >         (InfixE (Just (VarE x_1)) (VarE GHC.Num.+) (Just (VarE y))))
@@ -53,9 +53,9 @@
 ================================================================================
 
 > instance Translation Exts.Exp TH.Exp where
->   translateTree t = unsafePerformIO $ 
+>   translateTree t = unsafePerformIO $
 >              do mx <- runInterpreter (interpretTH (buildTHString t))
->                 case mx of 
+>                 case mx of
 >                   Left _ -> (return . Left) t
 >                   Right x -> x >>= (return . Right)
 >
@@ -71,7 +71,7 @@
 > translateExtsToTH :: Exts.Exp -> Either Exts.Exp TH.Exp
 > translateExtsToTH = translateTree
 
-> {-| Parse a string to a Language.Haskell.TH.Exp (template-haskell) expression 
+> {-| Parse a string to a Language.Haskell.TH.Exp (template-haskell) expression
 >   via intermediate representation as a Exts.Exp tree. -}
 > parseToTH :: String -> Either String TH.Exp
 > parseToTH = parseToTarget (undefined::Exts.Exp)
@@ -96,7 +96,7 @@ allowed in a TemplateHaskell quotation. For example:
 
     [| x |] -> [| $( varE (mkName "x"))$ |]
 
-liftFreeVars processes an Exts.Exp expression, keeping an account in its state of 
+liftFreeVars processes an Exts.Exp expression, keeping an account in its state of
 scoped variables in the following nested scope structure:
 
 > data NestedScopes = Next [String] NestedScopes | Empty deriving Show
@@ -110,7 +110,7 @@ isFree is used to ask if an encountered variable name is currently free
 Any free variables are converted into an Exts.Exp of a TH splice by mkFreeVar:
 
 > mkFreeVar :: Exts.Name -> Exts.Exp
-> mkFreeVar n = Exts.SpliceExp $ Exts.ParenSplice $ 
+> mkFreeVar n = Exts.SpliceExp $ Exts.ParenSplice $
 >             (Exts.App (Exts.Var (Exts.UnQual $ Exts.Ident "varE"))
 >                       (Exts.App (Exts.Var $ Exts.UnQual $ Exts.Ident "mkName")
 >                                 (Exts.Lit $ Exts.String $ nameToString $ n)))
@@ -121,7 +121,7 @@ and add the bound variables. The following extract variable names from various
 binding forms:
 
 > getPatBinders :: [Exts.Pat] -> [String]
-> getPatBinders = concatMap getPatBinders' 
+> getPatBinders = concatMap getPatBinders'
 >   where
 >   getPatBinders' p =
 >       [nameToString name | (Exts.PVar name)  <- universe p]
@@ -202,7 +202,7 @@ generated subtrees.
 >     f x = return $ Left x
 
 
- blankSrcLoc = Exts.SrcLoc "" 0 0 
+ blankSrcLoc = Exts.SrcLoc "" 0 0
  snLoc x = Exts.SrcLoc x 0 0
 
 > qOpToQName :: Exts.QOp -> Exts.QName
@@ -220,7 +220,7 @@ Extension to Uniplate
 
 Use descendM to do a top-down parse of a uniplatable tree,
 but take a function with return type: m (Either on on), with behaviour:
-    Descend on a value of Left x 
+    Descend on a value of Left x
     Stop on a value of Right x, which denotes that a new sub-tree was built that
        shouldn't be parsed over.
 
