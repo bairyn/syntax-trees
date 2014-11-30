@@ -8,7 +8,10 @@
 > -}
 
 
-> module Fork.Bairyn.Language.Haskell.SyntaxTrees () where
+> module Fork.Bairyn.Language.Haskell.SyntaxTrees
+>   ( module Fork.Bairyn.Language.Haskell.SyntaxTrees.ExtsToTH
+>   , module Fork.Bairyn.Language.Haskell.SyntaxTrees.Main
+>   ) where
 
 > import Fork.Bairyn.Language.Haskell.SyntaxTrees.ExtsToTH
 > import Fork.Bairyn.Language.Haskell.SyntaxTrees.Main
