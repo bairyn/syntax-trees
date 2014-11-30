@@ -1,7 +1,7 @@
 name:                syntax-trees-fork-bairyn
 -- Don't forget to bump the tag too.
 version:             0.1.2.3
-cabal-version:       >= 1.10
+cabal-version:       >= 1.18
 build-type:          Simple
 license:             BSD3
 license-file:        LICENSE
@@ -14,6 +14,9 @@ maintainer:
  ,ByronJohnsonFP@gmail.com
 extra-source-files:
   examples/Foo.lhs
+-- The extra-doc-files property requires cabal-version >= 1.18.
+extra-doc-files:
+  README.md
 synopsis:            Convert between different Haskell syntax trees.  Bairyn's fork.
 description:
   This is a fork of Dominic Orchard's syntax-trees package that is patched
