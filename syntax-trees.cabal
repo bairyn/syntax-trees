@@ -14,11 +14,8 @@ maintainer:
  ,ByronJohnsonFP@gmail.com
 extra-source-files:
   examples/Foo.lhs
-synopsis:            Convert between different Haskell syntax trees.  Bairyn's fork.
+synopsis:            Convert between different Haskell syntax trees.
 description:
-  This is a fork of Dominic Orchard's syntax-trees package that is patched
-  just to build on Haskell's more modern ecosystem.
-  .
   Provides an instance that translates haskell-src-exts expression trees into
   Template Haskell expression trees in a way that depends only on the
   haskell-src-exts syntax tree and agreement on the pretty-printed
