@@ -1,6 +1,6 @@
 name:                syntax-trees
 -- Don't forget to bump the tag too.
-version:             0.1.2.3
+version:             0.1.2.4
 cabal-version:       >= 1.18
 build-type:          Simple
 license:             BSD3
@@ -63,4 +63,4 @@ source-repository head
 source-repository this
   type:     git
   location: git@github.com:bairyn/syntax-trees.git
-  tag:      v0.1.2.3
+  tag:      v0.1.2.4
